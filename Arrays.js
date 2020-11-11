@@ -66,7 +66,7 @@
                 for (let index3 = index2 + 1; index3 < n; index3++) {
                     if (arr[index1] + arr[index2] + arr[index3] == 0) {
                         countTriplets++;
-                        console.log("Triplet "+countTriplets+": "+arr[index1] + " " + arr[index2] + " " + arr[index3]);
+                        console.log("Triplet " + countTriplets + ": " + arr[index1] + " " + arr[index2] + " " + arr[index3]);
                         found = true;
                     }
                 }
@@ -74,9 +74,24 @@
         }
 
         if (found == false)
-           console.log("Triplets Don't Exist!!!")
+            console.log("Triplets Don't Exist!!!")
 
     }
-    let arrtriplets = [0, -1, 2, -3, 1]; 
+    let arrtriplets = [0, -1, 2, -3, 1];
     findTriplets(arrtriplets, arrtriplets.length);
+}
+
+//Find Twice Repeated Digits & Sort Them
+{
+    let arr = new Array();
+    for (let index=100; index >= 0; index--) {
+        if(index>0 & index%11==0){
+            arr.push(index);
+        }
+    }
+    arr.sort();
+    console.log("Sorted Values: ")
+    for(arrVal of arr){
+        console.log(arrVal);
+    }
 }
