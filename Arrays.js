@@ -27,8 +27,31 @@
     }
 
     console.log("Second Minimum: " + secondMin+" Second Maximum: " + secondMax);
-
+    //With Sort
     arr.sort();
     console.log("Second Minimum: " + arr[1]+" Second Maximum: " + arr[arr.length -2]);
+}
 
+//Prime factorization Of Number
+{
+    let number = Math.floor(Math.random() * 100) + 1;
+    let arrOfPrimeFactors = new Array();
+    console.log("Number: "+number);
+    while (number % 2 == 0) {
+        arrOfPrimeFactors.push(2);
+        number /= 2;
+    }
+    for (let indexValue = 3; indexValue * indexValue <= number; indexValue += 2) {
+        while (number % indexValue == 0) {
+            arrOfPrimeFactors.push(indexValue)
+            number = number / indexValue;
+        }
+    }
+    if (number > 2) {
+        arrOfPrimeFactors.push(number);
+    }
+    console.log("Dispaying Prime Factor Array Contents")
+    for(arrOfPrimeFactor of arrOfPrimeFactors){
+        console.log(arrOfPrimeFactor);
+    }
 }
