@@ -1,10 +1,20 @@
 //Dice Roll Map
 {
     let diceMap = new Map([[1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0]]);
-    for (let index = 0; index < 10; index++) {
+    while (1) {
         //Dice Roll
+        let count10check =false;
         let dice = Math.floor(Math.random() * 6) + 1;
         let newVal = diceMap.get(dice);
+        //Traversing
+        for (let [key, val] of diceMap) {
+            if(val == 10){
+                count10check = true;
+                break;
+            }
+        }
+        if(count10check == true)
+        break;
         newVal++;
         //Updating
         diceMap.set(dice, newVal);
