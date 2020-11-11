@@ -8,6 +8,7 @@
     let secondMin = Number.MAX_SAFE_INTEGER;
     let max = Number.MIN_SAFE_INTEGER;
     let maxSecond = Number.MIN_SAFE_INTEGER;
+    //Without Sort
     for (arrIndex of arr) {
         console.log(arrIndex);
         if (arrIndex < min) {
@@ -26,5 +27,8 @@
     }
 
     console.log("Second Minimum: " + secondMin+" Second Maximum: " + secondMax);
+
+    arr.sort();
+    console.log("Second Minimum: " + arr[1]+" Second Maximum: " + arr[arr.length -2]);
 
 }
