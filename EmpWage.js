@@ -38,6 +38,7 @@ let totalEmpHrs = 0;
 let totalWorkingDays = 0;
 let arrayDailyWage = new Array();
 let empDailyWageMap = new Map();
+let empDailyHrsMap = new Map();
 while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < MAX_WORKING_DAYS) {
     totalWorkingDays++;
     let empCheck = Math.floor(Math.random() * 10) % 3;
@@ -46,15 +47,13 @@ while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < MAX_WORKING_DAYS) {
     totalEmpHrs += empHrs;
     arrayDailyWage.push(calculateDailyWage(empHrs));
     empDailyWageMap.set(totalWorkingDays, calculateDailyWage(empHrs));
+    empDailyHrsMap.set(totalWorkingDays, empHrs);
 }
 let empWage = calculateDailyWage(totalEmpHrs);
 console.log("Total Days: " + totalWorkingDays + " Total Hours: " + totalEmpHrs + " Total Wage: " + empWage);
-for (dailyWage of arrayDailyWage) {
-    console.log(dailyWage);
-}
-for(mapEntries of empDailyWageMap){
-    console.log(mapEntries);
-}
+console.log("Array Daily Wage " + arrayDailyWage);
+console.log("Map Daily Hrs " + empDailyHrsMap);
+console.log("Map Daily Wage " + empDailyWageMap);
 
 //Total empWage using forEach
 let totalEmpWage = 0;
@@ -107,4 +106,29 @@ function totalDaysWorked(numOfDays, dailyWage) {
         return numOfDays + 1;
     return numOfDays;
 }
-console.log("Number of days worked: " + arrayDailyWage.reduce(totalDaysWorked, 0)); 
+console.log("Number of days worked: " + arrayDailyWage.reduce(totalDaysWorked, 0));
+
+// Arrow functions
+const findTotal = (totalVal, dailyVal) => {
+    return totalVal + dailyVal;
+}
+let totalHours = Array.from(empDailyHourMap.values()).reduce(findTotal, 0);
+let totalWage = empDailyWageArr.filter(dailyWage => dailyWage > 0)
+    .reduce(findTotal, 0);
+console.log("Arrow functions: ");
+console.log("Total hours: " + totalHours + " Total Wage: " + totalWage);
+
+// Full working days, part working days and no working days
+
+let fullWorkingDays = new Array();
+let partWorkingDays = new Array();
+let noWorkingDays = new Array();
+empDailyHourMap.forEach((value, key) => {
+    if (value == 8) fullWorkingDays.push(key);
+    else if (value == 4) partWorkingDays.push(key);
+    else noWorkingDays.push(key);
+});
+console.log("Full working days: " + fullWorkingDays);
+console.log("Part working days: " + partWorkingDays);
+console.log("No working days: " + noWorkingDays);
+
