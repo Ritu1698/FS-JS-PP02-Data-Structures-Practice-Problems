@@ -37,6 +37,7 @@ function calculateDailyWage(empHrs) {
 let totalEmpHrs = 0;
 let totalWorkingDays = 0;
 let arrayDailyWage = new Array();
+let empDailyHrsAndWageObj = new Array();
 let empDailyWageMap = new Map();
 let empDailyHrsMap = new Map();
 while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < MAX_WORKING_DAYS) {
@@ -48,6 +49,15 @@ while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < MAX_WORKING_DAYS) {
     arrayDailyWage.push(calculateDailyWage(empHrs));
     empDailyWageMap.set(totalWorkingDays, calculateDailyWage(empHrs));
     empDailyHrsMap.set(totalWorkingDays, empHrs);
+    empDailyHrsAndWageObj.push(
+        {
+            dailyNum: totalWorkingDays,
+            dailyHours: empHrs,
+            dailyWage: calculateDailyWage(empHrs),
+            toString() {
+                return '\nDay' + this.dailyNum + '=> Working hours is ' + this.dailyHours + ' And Wage Earned = ' + this.dailyWage
+            },
+        });
 }
 let empWage = calculateDailyWage(totalEmpHrs);
 console.log("Total Days: " + totalWorkingDays + " Total Hours: " + totalEmpHrs + " Total Wage: " + empWage);
@@ -112,8 +122,8 @@ console.log("Number of days worked: " + arrayDailyWage.reduce(totalDaysWorked, 0
 const findTotal = (totalVal, dailyVal) => {
     return totalVal + dailyVal;
 }
-let totalHours = Array.from(empDailyHourMap.values()).reduce(findTotal, 0);
-let totalWage = empDailyWageArr.filter(dailyWage => dailyWage > 0)
+let totalHours = Array.from(empDailyHrsMap.values()).reduce(findTotal, 0);
+let totalWage = arrayDailyWage.filter(dailyWage => dailyWage > 0)
     .reduce(findTotal, 0);
 console.log("Arrow functions: ");
 console.log("Total hours: " + totalHours + " Total Wage: " + totalWage);
@@ -123,7 +133,7 @@ console.log("Total hours: " + totalHours + " Total Wage: " + totalWage);
 let fullWorkingDays = new Array();
 let partWorkingDays = new Array();
 let noWorkingDays = new Array();
-empDailyHourMap.forEach((value, key) => {
+empDailyHrsMap.forEach((value, key) => {
     if (value == 8) fullWorkingDays.push(key);
     else if (value == 4) partWorkingDays.push(key);
     else noWorkingDays.push(key);
@@ -132,3 +142,5 @@ console.log("Full working days: " + fullWorkingDays);
 console.log("Part working days: " + partWorkingDays);
 console.log("No working days: " + noWorkingDays);
 
+// Display Object 
+console.log("Object created: " + empDailyHrsAndWageObj);
