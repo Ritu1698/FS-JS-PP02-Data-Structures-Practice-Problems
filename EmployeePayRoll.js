@@ -6,6 +6,8 @@ class EmployeePayrollData {
         this.salary = params[2];
         this.gender = params[3];
         this.startDate = params[4];
+        this.email = params[5];
+        this.zip = params[6];
     }
     get name() { return this._name; }
     set name(name) {
@@ -33,7 +35,7 @@ class EmployeePayrollData {
     }
     get gender() { return this._gender; }
     set gender(gender) {
-        if (gender == 'F' || gender == 'M') 
+        if (gender == 'F' || gender == 'M')
             this._gender = gender;
         else throw 'Incorrect gender';
     }
@@ -44,22 +46,42 @@ class EmployeePayrollData {
         else throw "Incorrect Start Date! "
 
     }
+    get email() { return this._email; }
+    set email(email) {
+        let regEx = RegExp('^[a-zA-Z]+([._+-]{0,1}[a-zA-Z0-9]+)*@[a-zA-Z0-9]+.[(com)|(co)|(net)]+(?:\\.[a-z]{2,}){0,1}$');
+        if (regEx.test(email)) {
+            this._email = email;
+        }
+        else throw 'Incorrect email';
+
+    }
+    get zip() { return this._zip; }
+    set zip(zip) {
+        let regEx = RegExp('^\\d{3}(\\s{0,1}\\d{3})$');
+        if (regEx.test(zip)) {
+            this._zip = zip;
+        }
+        else throw 'Incorrect zip';
+
+    }
 
     toString() {
         const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
         const empDate = this.startDate === undefined ? "undefined" : this.startDate.toLocaleDateString("en-US", options);
-        return '\nID: ' + this.id + ' name: ' + this.name + ' salary: ' + this.salary + ' gender: ' + this.gender + ' startDate: ' + empDate;
+        return '\nID: ' + this.id + ' name: ' + this.name + ' salary: ' + this.salary + ' gender: ' + this.gender + ' startDate: ' + empDate + ' email: ' + this.email + ' zip: ' + this.zip;
     }
 
 }
-let employeePayrollData = new EmployeePayrollData(1, "Ritu", 30000, 'F', new Date());
+let employeePayrollData = new EmployeePayrollData(1, "Ritu", 30000, 'F', new Date(),'abc@gmail.com',400088);
 console.log(employeePayrollData.toString());
 try {
-    employeePayrollData.name = "Ommm";
-    employeePayrollData.id = 1;
-    employeePayrollData.salary = 900000;
+    employeePayrollData.name = "om";
+    employeePayrollData.id = 0;
+    employeePayrollData.salary = -900000;
     employeePayrollData.startDate = '12/12/2020';
     employeePayrollData.gender = 'G';
+    employeePayrollData.email = '111.gmail.com';
+    employeePayrollData.zip = '400o88';
     console.log(employeePayrollData.toString());
 }
 catch (e) {
