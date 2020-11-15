@@ -180,32 +180,43 @@ try {
 
     let contactObjectOne = new Contact("Ritu", "Biswas", "Orchid", "Mumbai", "Maharashtra", 400088, '91 1234567890', 'abc@gmail.com');
     let contactObjectTwo = new Contact("Riya", "Srivastava", "Neelkhant", "Hazribagh", "Jharkhand", 700013, '91 2233445566', 'dd@gmail.com');
+    console.log('UC1&2');
     let addressBook = new Array();
     addContact(addressBook, contactObjectOne);
     displayContact(addressBook);
     addContact(addressBook, contactObjectTwo);
     displayContact(addressBook);
+    console.log('UC3');
     firstname = 'Ritu';
     newFirstname = 'Rituparna';
     findAndUpdateContact(addressBook, firstname, newFirstname);
     displayContact(addressBook);
+    console.log('UC4');
     findAndDeleteContact(addressBook, newFirstname);
     displayContact(addressBook);
+    console.log('UC5');
     addContact(addressBook, contactObjectOne);
     let totalContacts = findTotalContacts(addressBook);
     console.log('Total Contacts in AddressBook At Present: ' + totalContacts);
+    console.log('UC6');
     addContact(addressBook, contactObjectTwo);
     displayContact(addressBook);
+    console.log('UC7');
     let contactsSearchByCity = searchContact("City", "Hazribagh", addressBook);
     displayContact(contactsSearchByCity);
+    console.log('UC8');
     let contactMap = viewContact("State", addressBook);
     displayContact(contactMap);
+    console.log('UC9');
     countMap = countByCityOrState("City", addressBook)
     displayContact(contactMap);
+    console.log('UC10');
     let addressBookSorted = sortByFirstname(addressBook);
     displayContact(addressBookSorted);
+    console.log('UC11');
     let addressBookZipSort = sortByCityStateOrZip("Zip", addressBook);
     displayContact(addressBookZipSort);
+    console.log('UC12');
 }
 catch (e) {
     console.error(e);
