@@ -106,6 +106,19 @@ function findAndDeleteContact(addressBook, firstname) {
 function findTotalContacts(addressBook) {
     return addressBook.length;
 }
+function searchContact(cityOrStateFlag, cityOrStateValue, addressBook) {
+    let contacts;
+    switch (cityOrStateFlag) {
+        case "City":
+            contacts = addressBook.filter(contact => contact.city == cityOrStateValue);
+            break;
+        case "State":
+            contacts = addressBook.filter(contact => contact.state == cityOrStateValue);
+            break;
+    }
+    return contacts;
+}
+
 try {
 
     let contactObjectOne = new Contact("Ritu", "Biswas", "Orchid", "Mumbai", "Maharashtra", 400088, '91 1234567890', 'abc@gmail.com');
@@ -125,6 +138,8 @@ try {
     console.log('Total Contacts in AddressBook At Present: ' + totalContacts);
     addContact(addressBook, contactObjectTwo);
     displayContact(addressBook);
+    let contactsSearchByCity = searchContact("City", "Hazribagh", addressBook);
+    displayContact(contactsSearchByCity);
 }
 catch (e) {
     console.error(e);
