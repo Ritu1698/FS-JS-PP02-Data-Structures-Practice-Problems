@@ -93,7 +93,6 @@ function addContact(addressBook, newContact) {
         addressBook.push(newContact);
 }
 function displayContact(addressBook) {
-    console.log('Total contacts in AddressBook: ' + addressBook.length);
     addressBook.forEach(contact => console.log(contact.toString()));
 }
 function findAndUpdateContact(addressBook, oldName, newName) {
@@ -118,7 +117,30 @@ function searchContact(cityOrStateFlag, cityOrStateValue, addressBook) {
     }
     return contacts;
 }
-
+function viewContact(attribute, addressBook) {
+    let contactMap = new Map();
+    switch (attribute) {
+        case "City":
+            addressBook.forEach(contact => {
+                if (!contactMap.get(contact.city)) {
+                    contactMap.set(contact.city, [contact]);
+                } else {
+                    contactMap.get(contact.city).push(contact);
+                }
+            });
+            break;
+        case "State":
+            addressBook.forEach(contact => {
+                if (!contactMap.get(contact.state)) {
+                    contactMap.set(contact.state, [contact]);
+                } else {
+                    contactMap.get(contact.state).push(contact);
+                }
+            });
+            break;
+    }
+    return contactMap;
+}
 try {
 
     let contactObjectOne = new Contact("Ritu", "Biswas", "Orchid", "Mumbai", "Maharashtra", 400088, '91 1234567890', 'abc@gmail.com');
@@ -140,6 +162,8 @@ try {
     displayContact(addressBook);
     let contactsSearchByCity = searchContact("City", "Hazribagh", addressBook);
     displayContact(contactsSearchByCity);
+    let contactMap = viewContact("State", addressBook);
+    displayContact(contactMap);
 }
 catch (e) {
     console.error(e);
