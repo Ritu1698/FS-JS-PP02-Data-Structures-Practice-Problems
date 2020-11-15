@@ -162,6 +162,20 @@ function countByCityOrState(cityOrStateFlag, addressBook) {
 function sortByFirstname(addressBook) {
     return addressBook.sort((a, b) => (a.firstName > b.firstName) ? 1 : -1);
 }
+function sortByCityStateOrZip(cityStateOrZipFlag, addressBook) {
+    switch (cityStateOrZipFlag) {
+        case "City":
+            return addressBook.sort((a, b) => (a.city > b.city) ? 1 : -1);
+            break;
+        case "State":
+            return addressBook.sort((a, b) => (a.state > b.state) ? 1 : -1);
+            break;
+        case "Zip":
+            return addressBook.sort((a, b) => (a.zip > b.zip) ? 1 : -1);
+            break;
+    }
+
+}
 try {
 
     let contactObjectOne = new Contact("Ritu", "Biswas", "Orchid", "Mumbai", "Maharashtra", 400088, '91 1234567890', 'abc@gmail.com');
@@ -186,11 +200,12 @@ try {
     displayContact(contactsSearchByCity);
     let contactMap = viewContact("State", addressBook);
     displayContact(contactMap);
-    console.log("hhh")
     countMap = countByCityOrState("City", addressBook)
     displayContact(contactMap);
     let addressBookSorted = sortByFirstname(addressBook);
     displayContact(addressBookSorted);
+    let addressBookZipSort = sortByCityStateOrZip("Zip", addressBook);
+    displayContact(addressBookZipSort);
 }
 catch (e) {
     console.error(e);
