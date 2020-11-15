@@ -92,8 +92,12 @@ function displayContact(addressBook) {
     console.log('Total contacts in AddressBook: ' + addressBook.length);
     addressBook.forEach(contact => console.log(contact.toString()));
 }
-function findContact(addressBook, oldName, newName) {
+function findAndUpdateContact(addressBook, oldName, newName) {
     addressBook.filter(contact => contact.firstName == oldName).forEach(contact => contact.firstName = newName);
+}
+function findAndDeleteContact(addressBook, firstname) {
+    var index = addressBook.map(contact => contact.firstName).indexOf(firstname);
+    addressBook.splice(index, 1);
 }
 try {
 
@@ -106,7 +110,9 @@ try {
     displayContact(addressBook);
     firstname = 'Ritu';
     newFirstname = 'Rituparna';
-    findContact(addressBook, firstname, newFirstname);
+    findAndUpdateContact(addressBook, firstname, newFirstname);
+    displayContact(addressBook);
+    findAndDeleteContact(addressBook, newFirstname);
     displayContact(addressBook);
 }
 catch (e) {
