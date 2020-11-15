@@ -85,9 +85,24 @@ class Contact {
     }
 
 }
+function addContact(addressBook, contact) {
+    addressBook.push(contact);
+}
+function displayContact(addressBook) {
+    console.log('Total contacts in AddressBook: ' + addressBook.length);
+    addressBook.forEach(contact => console.log(contact.toString()));
+}
 try {
-    let contactObject = new Contact("Ritu", "Biswas", "Orchid", "Mumbai", "Maharashtra", 400088, '91 1234567890', 'abc@gmail.com');
-    console.log(contactObject.toString());
+    
+    let contactObjectOne = new Contact("Ritu", "Biswas", "Orchid", "Mumbai", "Maharashtra", 400088, '91 1234567890', 'abc@gmail.com');
+    let contactObjectTwo = new Contact("Riya", "Srivastava", "Neelkhant", "Hazribagh", "Jharkhand", 700013, '91 2233445566', 'dd@gmail.com');
+    let addressBook = new Array();
+    addContact(addressBook, contactObjectOne);
+    displayContact(addressBook);
+    addContact(addressBook, contactObjectTwo);
+    displayContact(addressBook);
+
+
 }
 catch (e) {
     console.error(e);
