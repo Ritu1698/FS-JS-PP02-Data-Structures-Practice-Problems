@@ -92,8 +92,11 @@ function displayContact(addressBook) {
     console.log('Total contacts in AddressBook: ' + addressBook.length);
     addressBook.forEach(contact => console.log(contact.toString()));
 }
+function findContact(addressBook, oldName, newName) {
+    addressBook.filter(contact => contact.firstName == oldName).forEach(contact => contact.firstName = newName);
+}
 try {
-    
+
     let contactObjectOne = new Contact("Ritu", "Biswas", "Orchid", "Mumbai", "Maharashtra", 400088, '91 1234567890', 'abc@gmail.com');
     let contactObjectTwo = new Contact("Riya", "Srivastava", "Neelkhant", "Hazribagh", "Jharkhand", 700013, '91 2233445566', 'dd@gmail.com');
     let addressBook = new Array();
@@ -101,8 +104,10 @@ try {
     displayContact(addressBook);
     addContact(addressBook, contactObjectTwo);
     displayContact(addressBook);
-
-
+    firstname = 'Ritu';
+    newFirstname = 'Rituparna';
+    findContact(addressBook, firstname, newFirstname);
+    displayContact(addressBook);
 }
 catch (e) {
     console.error(e);
