@@ -141,6 +141,24 @@ function viewContact(attribute, addressBook) {
     }
     return contactMap;
 }
+function countByCityOrState(cityOrStateFlag, addressBook) {
+    let countMap = new Map();
+    switch (cityOrStateFlag) {
+        case "City":
+            contactMap = viewContact("City", addressBook);
+            contactMap.forEach((key, value) => {
+                countMap.set(value, key.length);
+            });
+            break;
+        case "State":
+            contactMap = viewContact("State", addressBook);
+            contactMap.forEach((key, value) => {
+                countMap.set(value, key.length);
+            });
+            break;
+    }
+    return countMap;
+}
 try {
 
     let contactObjectOne = new Contact("Ritu", "Biswas", "Orchid", "Mumbai", "Maharashtra", 400088, '91 1234567890', 'abc@gmail.com');
@@ -164,6 +182,8 @@ try {
     displayContact(contactsSearchByCity);
     let contactMap = viewContact("State", addressBook);
     displayContact(contactMap);
+    let countMap = countByCityOrState("City", addressBook)
+    console.log(countMap);
 }
 catch (e) {
     console.error(e);
