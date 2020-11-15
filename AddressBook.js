@@ -99,6 +99,9 @@ function findAndDeleteContact(addressBook, firstname) {
     var index = addressBook.map(contact => contact.firstName).indexOf(firstname);
     addressBook.splice(index, 1);
 }
+function findTotalContacts(addressBook) {
+    return addressBook.length;
+}
 try {
 
     let contactObjectOne = new Contact("Ritu", "Biswas", "Orchid", "Mumbai", "Maharashtra", 400088, '91 1234567890', 'abc@gmail.com');
@@ -114,6 +117,8 @@ try {
     displayContact(addressBook);
     findAndDeleteContact(addressBook, newFirstname);
     displayContact(addressBook);
+    let totalContacts = findTotalContacts(addressBook);
+    console.log('Total Contacts in AddressBook At Present: ' + totalContacts);
 }
 catch (e) {
     console.error(e);
