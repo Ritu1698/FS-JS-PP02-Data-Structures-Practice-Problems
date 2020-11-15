@@ -85,8 +85,12 @@ class Contact {
     }
 
 }
-function addContact(addressBook, contact) {
-    addressBook.push(contact);
+function addContact(addressBook, newContact) {
+    if (addressBook.find(contact => contact.firstName == newContact.firstName)) {
+        console.log("Contact Already Exists!!!");
+    }
+    else
+        addressBook.push(newContact);
 }
 function displayContact(addressBook) {
     console.log('Total contacts in AddressBook: ' + addressBook.length);
@@ -119,6 +123,8 @@ try {
     displayContact(addressBook);
     let totalContacts = findTotalContacts(addressBook);
     console.log('Total Contacts in AddressBook At Present: ' + totalContacts);
+    addContact(addressBook, contactObjectTwo);
+    displayContact(addressBook);
 }
 catch (e) {
     console.error(e);
